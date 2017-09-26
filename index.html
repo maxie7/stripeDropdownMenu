@@ -18,7 +18,7 @@
                 <a href="#">About Me</a>
                 <div class="dropdown dropdown1">
                     <div class="bio">
-                        <img src="https://avatars3.githubusercontent.com/u/15796607?v=4&s=460">
+                        <img src="https://avatars3.githubusercontent.com/u/15796607?v=4&s=240">
                         <p>I'm a full stack developer with experience building in Ruby, HTML5, CSS3, JS (jQuery, Angular). For ten years I worked as a system administrator, and more than a year and a half I am involved in web developing industry. My passion
                             for back-end development and front-end detail has helped to produce effective and aesthetically pleasing web applications</p>
                     </div>
@@ -60,7 +60,7 @@
             <li>
                 <a href="#">Other Links</a>
                 <ul class="dropdown dropdown3">
-                    <li><a class="button" href="https://github.com/maxie7/">GiHub</a></li>
+                    <li><a class="button" href="https://github.com/maxie7/">GitHub</a></li>
                     <li><a class="button" href="https://www.facebook.com/max.timeless.reflections">Facebook</a></li>
                     <li><a class="button" href="https://www.linkedin.com/in/maksym-kosenko-3267a684/">LinkedIn</a></li>
                     <li><a class="button" href="https://codepen.io/maxie7/">Codepen</a></li>
@@ -207,15 +207,15 @@
         }
         /* Matches Twitter, TWITTER, twitter, tWitter, TWiTTeR... */
         
-        .button[href*=twitter] {
-            background: #019FE9;
+        .button[href*=github] {
+            background: #1D2D35;
         }
         
         .button[href*=facebook] {
             background: #3B5998;
         }
         
-        .button[href*=courses] {
+        .button[href*=codepen] {
             background: #ffc600;
         }
     </style>
@@ -224,6 +224,18 @@
         const triggers = document.querySelectorAll('.cool > li');
         const background = document.querySelector('.dropdownBackground');
         const nav = document.querySelector('.top');
+
+        function handleEnter() {
+            this.classList.add('trigger-enter');
+            setTimeout(() => this.classList.add('trigger-enter-active'), 150);
+        }
+
+        function handleLeave() {
+
+        }
+
+        triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+        triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
     </script>
 
 </body>
