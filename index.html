@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h2>Cool</h2>
+
     <nav class="top">
         <div class="dropdownBackground">
             <span class="arrow"></span>
@@ -18,7 +18,7 @@
                 <a href="#">About Me</a>
                 <div class="dropdown dropdown1">
                     <div class="bio">
-                        <img src="https://avatars3.githubusercontent.com/u/15796607?v=4&s=240">
+                        <img src="https://avatars3.githubusercontent.com/u/15796607?v=4&s=200">
                         <p>I'm a full stack developer with experience building in Ruby, HTML5, CSS3, JS (jQuery, Angular). For ten years I worked as a system administrator, and more than a year and a half I am involved in web developing industry. My passion
                             for back-end development and front-end detail has helped to produce effective and aesthetically pleasing web applications</p>
                     </div>
@@ -227,11 +227,33 @@
 
         function handleEnter() {
             this.classList.add('trigger-enter');
-            setTimeout(() => this.classList.add('trigger-enter-active'), 150);
+            setTimeout(() => {
+                if (this.classList.contains('trigger-enter')) {
+                    this.classList.add('trigger-enter-active')
+                }
+            }, 150);
+            background.classList.add('open');
+
+            const dropdown = this.querySelector('.dropdown');
+            const dropdownCoords = dropdown.getBoundingClientRect();
+            const navCoords = nav.getBoundingClientRect();
+
+            const coords = {
+                height: dropdownCoords.height,
+                width: dropdownCoords.width,
+                left: dropdownCoords.left - navCoords.left,
+                top: dropdownCoords.top - navCoords.top
+
+            };
+
+            background.style.setProperty('width', `${coords.width}px`);
+            background.style.setProperty('height', `${coords.height}px`);
+            background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
         }
 
         function handleLeave() {
-
+            this.classList.remove('trigger-enter', 'trigger-enter-active');
+            background.classList.remove('open');
         }
 
         triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
